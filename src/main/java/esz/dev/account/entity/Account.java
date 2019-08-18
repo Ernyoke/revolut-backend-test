@@ -17,6 +17,6 @@ import java.math.BigDecimal;
 @Builder
 @Wither
 public class Account {
-    String iban;
-    BigDecimal amount;
+    private String iban;
+    private BigDecimal amount;
 }
