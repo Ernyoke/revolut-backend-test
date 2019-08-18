@@ -21,7 +21,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.mockito.Mockito.*;
 
 /**
- * Unit tests for business logic which handles bank esz.dev.account transactions.
+ * Unit tests for business logic which handles bank account transactions.
  */
 @ExtendWith(MockitoExtension.class)
 class AccountServiceTest {
@@ -35,7 +35,7 @@ class AccountServiceTest {
     private AccountService accountService;
 
     @Test
-    @DisplayName("Should create a new esz.dev.account for an esz.dev.user")
+    @DisplayName("Should create a new account for an user")
     void successfullyCreateAccount() throws UserNotFoundException {
         long userId = 1L;
         when(userStore.getUser(userId))
@@ -46,13 +46,15 @@ class AccountServiceTest {
                                 .address("addr")
                                 .accounts(new HashSet<>())
                                 .build()));
-        accountService.createAccount(userId);
+        String iban = accountService.createAccount(userId);
+        assertThat(iban).startsWith("RO");
+        assertThat(iban).contains("XXX");
         verify(accountStore, times(1)).addAccount(any(Account.class));
         verify(userStore, times(1)).getUser(userId);
     }
 
     @Test
-    @DisplayName("Should throw exception in case nonexistent esz.dev.user")
+    @DisplayName("Should throw exception in case nonexistent user")
     void throwExceptionWhenUserNotFoundForNewAccount() {
         long userId = 1L;
         when(userStore.getUser(userId)).thenReturn(Optional.empty());
@@ -94,7 +96,7 @@ class AccountServiceTest {
     }
 
     @Test
-    @DisplayName("Should throw an exception in case of nonexistent esz.dev.account used for withdrawal")
+    @DisplayName("Should throw an exception in case of nonexistent account used for withdrawal")
     void throwExceptionWhenAccountDoesNotExistWithdrawal() {
         String iban = "IBAN";
         when(accountStore.getAccount(iban)).thenReturn(Optional.empty());
@@ -123,7 +125,7 @@ class AccountServiceTest {
     }
 
     @Test
-    @DisplayName("Should throw an exception in case of nonexistent esz.dev.account for deposit")
+    @DisplayName("Should throw an exception in case of nonexistent account for deposit")
     void throwExceptionWhenAccountDoesNotExistDeposit() {
         String iban = "IBAN";
         when(accountStore.getAccount(iban)).thenReturn(Optional.empty());
@@ -181,7 +183,7 @@ class AccountServiceTest {
     }
 
     @Test
-    @DisplayName("Should throw an exception in case of nonexistent sender esz.dev.account used for transfer")
+    @DisplayName("Should throw an exception in case of nonexistent sender account used for transfer")
     void throwExceptionWhenSenderNotExist() {
         String senderIban = "IBAN1";
         String receiverIban = "IBAN2";
@@ -194,7 +196,7 @@ class AccountServiceTest {
     }
 
     @Test
-    @DisplayName("Should throw an exception in case of nonexistent sender esz.dev.account used for transfer")
+    @DisplayName("Should throw an exception in case of nonexistent sender account used for transfer")
     void throwExceptionWhenReceiverNotExist() {
         String senderIban = "IBAN1";
         Account sender = Account

@@ -40,8 +40,8 @@ public class UserResource {
 
     @POST
     public ResponseDto addUser(UserDto userDto, Context context) {
-        userService.addUser(userDto);
+        long id = userService.addUser(userDto);
         context.setResponseCode(StatusCode.CREATED);
-        return ResponseDto.builder().status(ResponseDto.Status.SUCCESS).message("Successfully created esz.dev.user!").build();
+        return ResponseDto.builder().status(ResponseDto.Status.SUCCESS).message("Successfully created user with id " + id).build();
     }
 }

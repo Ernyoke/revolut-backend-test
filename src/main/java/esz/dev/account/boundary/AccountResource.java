@@ -27,9 +27,9 @@ public class AccountResource {
 
     @POST("/{userId}")
     public ResponseDto createAccount(@PathParam Long userId, Context context) throws UserNotFoundException {
-        accountService.createAccount(userId);
+        String iban = accountService.createAccount(userId);
         context.setResponseCode(StatusCode.CREATED);
-        return ResponseDto.builder().status(ResponseDto.Status.SUCCESS).message("Successfully created esz.dev.account!").build();
+        return ResponseDto.builder().status(ResponseDto.Status.SUCCESS).message("Successfully created account with iban " + iban).build();
     }
 
     @GET("/{iban}")

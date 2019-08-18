@@ -30,19 +30,20 @@ public class AccountService {
         this.userStore = userStore;
     }
 
-    public void createAccount(long userId) throws UserNotFoundException {
+    public String createAccount(long userId) throws UserNotFoundException {
         Iban iban = new Iban.Builder()
                 .countryCode(countryCode)
                 .bankCode(bankCode)
                 .accountNumber(String.valueOf(accountNumber.incrementAndGet()))
                 .build();
         synchronized (this) {
-            User user = userStore.getUser(userId).orElseThrow(() -> new UserNotFoundException("No esz.dev.user found with id of " + userId));
+            User user = userStore.getUser(userId).orElseThrow(() -> new UserNotFoundException("No user found with id of " + userId));
             accountStore.addAccount(Account.builder()
                     .iban(iban.toString())
                     .amount(BigDecimal.ZERO).build());
             user.getAccounts().add(iban.toString());
         }
+        return iban.toString();
     }
 
     public AmountDto checkFunds(String iban) throws AccountNotFoundException {
@@ -73,6 +74,6 @@ public class AccountService {
 
     private Account getAccountOrElseThrow(String iban) throws AccountNotFoundException {
         return accountStore.getAccount(iban)
-                .orElseThrow(() -> new AccountNotFoundException("No esz.dev.account found with iban " + iban));
+                .orElseThrow(() -> new AccountNotFoundException("No account found with iban " + iban));
     }
 }

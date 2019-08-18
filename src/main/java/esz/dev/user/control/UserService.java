@@ -21,20 +21,20 @@ public class UserService {
         this.userStore = userStore;
     }
 
-    public void addUser(UserDto userDto) {
+    public long addUser(UserDto userDto) {
         User user = userMapper.userDtoToUser(userDto);
-        userStore.addUser(user.withAccounts(new HashSet<>()));
+        return userStore.addUser(user.withAccounts(new HashSet<>()));
     }
 
     public UserDto getUser(Long id) throws UserNotFoundException {
         return userStore.getUser(id)
                 .map(userMapper::userToUserDto)
-                .orElseThrow(() -> new UserNotFoundException("No esz.dev.user found with id of " + id));
+                .orElseThrow(() -> new UserNotFoundException("No user found with id of " + id));
     }
 
     public Set<String> getAccountsForUser(Long id) throws UserNotFoundException {
         return userStore.getUser(id)
                 .map(User::getAccounts)
-                .orElseThrow(() -> new UserNotFoundException("No esz.dev.user found with id of " + id));
+                .orElseThrow(() -> new UserNotFoundException("No user found with id of " + id));
     }
 }

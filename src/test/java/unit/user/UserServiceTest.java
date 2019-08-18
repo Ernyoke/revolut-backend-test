@@ -33,7 +33,7 @@ class UserServiceTest {
     private UserService userService;
 
     @Test
-    @DisplayName("Should return an existing esz.dev.user")
+    @DisplayName("Should return an existing user")
     void getExistingUserTest() throws UserNotFoundException {
         long id = 1L;
         User user = User.builder()
@@ -54,7 +54,7 @@ class UserServiceTest {
     }
 
     @Test
-    @DisplayName("Should throw an exception in case of nonexistent esz.dev.user")
+    @DisplayName("Should throw an exception in case of nonexistent user")
     void getNonExistentUserTest() {
         long id = 1L;
 

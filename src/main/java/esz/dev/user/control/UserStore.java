@@ -17,9 +17,10 @@ public class UserStore {
     private final AtomicLong idGenerator = new AtomicLong(0);
     private final Map<Long, User> users = new ConcurrentHashMap<>();
 
-    public void addUser(User user) {
+    public long addUser(User user) {
         long id = idGenerator.incrementAndGet();
         users.put(id, user.withId(id));
+        return id;
     }
 
     public Optional<User> getUser(Long id) {
