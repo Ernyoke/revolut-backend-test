@@ -107,7 +107,7 @@ Check funds:
 
 ```curl -X GET http://localhost:8080/api/account/RO47XXXX5678901234567891```
 
-```Response: {"iban":"RO47XXXX5678901234567891","amount":478}```
+*Response:* ```{"iban":"RO47XXXX5678901234567891","amount":478}```
 
 ```curl -X GET http://localhost:8080/api/account/RO20XXXX5678901234567892```
 
