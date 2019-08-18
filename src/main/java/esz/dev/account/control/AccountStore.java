@@ -22,4 +22,8 @@ public class AccountStore {
     public Optional<Account> getAccount(String iban) {
         return Optional.ofNullable(accounts.get(iban));
     }
+
+    public int countAccounts() {
+        return accounts.size();
+    }
 }
