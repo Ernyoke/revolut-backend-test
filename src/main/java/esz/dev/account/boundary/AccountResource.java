@@ -1,7 +1,7 @@
 package esz.dev.account.boundary;
 
 import esz.dev.account.control.*;
-import esz.common.ResponseDto;
+import esz.dev.common.ResponseDto;
 import io.jooby.Context;
 import io.jooby.StatusCode;
 import io.jooby.annotations.*;

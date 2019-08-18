@@ -1,6 +1,6 @@
 package esz.dev;
 
-import esz.common.ResponseDto;
+import esz.dev.common.ResponseDto;
 import esz.dev.account.boundary.AccountResource;
 import esz.dev.account.boundary.InvalidInputException;
 import esz.dev.account.control.AccountNotFoundException;

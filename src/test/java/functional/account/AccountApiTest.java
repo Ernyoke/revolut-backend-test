@@ -1,7 +1,7 @@
 package functional.account;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import esz.common.ResponseDto;
+import esz.dev.common.ResponseDto;
 import esz.dev.App;
 import esz.dev.account.control.AmountDto;
 import esz.dev.account.control.TransferAmountDto;

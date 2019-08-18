@@ -1,7 +1,7 @@
 package functional.user;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import esz.common.ResponseDto;
+import esz.dev.common.ResponseDto;
 import esz.dev.App;
 import esz.dev.user.control.UserDto;
 import functional.common.Utils;

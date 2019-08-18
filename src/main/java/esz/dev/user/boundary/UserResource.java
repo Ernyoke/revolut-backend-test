@@ -1,6 +1,6 @@
 package esz.dev.user.boundary;
 
-import esz.common.ResponseDto;
+import esz.dev.common.ResponseDto;
 import esz.dev.user.control.UserDto;
 import esz.dev.user.control.UserNotFoundException;
 import esz.dev.user.control.UserService;

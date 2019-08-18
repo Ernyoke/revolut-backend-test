@@ -1,4 +1,4 @@
-package esz.common;
+package esz.dev.common;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import lombok.AllArgsConstructor;
