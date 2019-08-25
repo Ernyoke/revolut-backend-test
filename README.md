@@ -23,7 +23,7 @@ running the following command:
 
 ## General usage
 
-In order to be able to make transaction, first we have to register an user:
+In order to be able to make a transaction, first we have to register an user:
 
 ```
 curl -X POST \
@@ -115,7 +115,7 @@ Check funds:
 
 ## Testing
 
-The application contains unit tests for the business login and functional tests for both the user api and bank account api.
+The application contains unit tests for the business logic and functional tests for both the user api and bank account api.
 Besides this there are some integration tests which aim to test the concurrency/multithreading approach of the application.
 These tests aim to mimic a huge number of simultaneous parallel request ultimately trying to achieve information loss 
 and/or deadlocks.
